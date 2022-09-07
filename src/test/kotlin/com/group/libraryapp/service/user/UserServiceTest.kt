@@ -46,7 +46,8 @@ class UserServiceTest @Autowired constructor(
         // given
         userRepository.saveAll(listOf(
             User("A", 20),
-            User("B", null)));
+            User("B", null)
+        ));
 
         // when
         val results = userService.getUsers()
@@ -64,7 +65,7 @@ class UserServiceTest @Autowired constructor(
 
         // given
         val savedUser = userRepository.save(User("A", null))
-        val request = UserUpdateRequest(savedUser.id, "B")
+        val request = UserUpdateRequest(savedUser.id!!, "B") // null 아님 단언
 
         // when
         userService.updateUserName(request)

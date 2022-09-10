@@ -2,6 +2,7 @@ package com.group.libraryapp.service.book
 
 import com.group.libraryapp.domain.book.Book
 import com.group.libraryapp.domain.book.BookRepository
+import com.group.libraryapp.domain.book.BookType
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
@@ -36,7 +37,7 @@ class BookServiceTest @Autowired constructor(
     fun saveBookTest() {
 
         // given
-        val request = BookRequest("이상한 나라의 앨리스", "COMPUTER")
+        val request = BookRequest("이상한 나라의 앨리스", BookType.COMPUTER)
 
         // when
         bookService.saveBook(request)

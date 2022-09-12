@@ -9,6 +9,7 @@ import com.group.libraryapp.dto.book.request.BookLoanRequest
 import com.group.libraryapp.dto.book.request.BookRequest
 import com.group.libraryapp.dto.book.request.BookReturnRequest
 import com.group.libraryapp.dto.book.response.BookStatResponse
+import com.group.libraryapp.repository.book.BookQuerydslRepository
 import com.group.libraryapp.util.fail
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class BookService(
     private val bookRepository: BookRepository,
+    private val bookQuerydslRepository: BookQuerydslRepository,
     private val userRepository: UserRepository,
     private val userLoanHistoryRepository: UserLoanHistoryRepository,
 ) {
@@ -76,7 +78,7 @@ class BookService(
         */
 
         // DB에서 데이터를 가져올 때 Group By 쿼리를 사용하여 필요한 데이터만 가져옴(인덱스를 사용해 튜닝 할 여지가 있음)
-        return bookRepository.getStats()
+        return bookQuerydslRepository.getStats()
     }
 
 }
